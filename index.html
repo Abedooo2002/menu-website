@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnterGame Menu</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;500&display=swap');
+
+body {
+margin: 0;
+padding: 0;
+background-color: #000;
+color: #fff;
+font-family: 'Poppins', sans-serif;
+overflow-x: hidden;
+position: relative;
+}
+
+header {
+text-align: center;
+padding: 40px 10px;
+animation: fadeIn 1.5s ease;
+position: relative;
+z-index: 2;
+}
+
+header h1 {
+font-family: 'Orbitron', sans-serif;
+font-size: 3rem;
+background: linear-gradient(90deg, #00f5ff, #8a2be2);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 20px #00f5ff;
+}
+
+section {
+text-align: center;
+margin: 40px auto;
+max-width: 750px;
+background: rgba(255, 255, 255, 0.05);
+padding: 25px;
+border-radius: 20px;
+box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+opacity: 0;
+transform: translateX(-100px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+position: relative;
+z-index: 2;
+overflow: hidden;
+}
+
+section:nth-child(odd) {
+transform: translateX(-100px);
+}
+
+section:nth-child(even) {
+transform: translateX(100px);
+}
+
+section::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent);
+animation: wave 3s infinite;
+z-index: 1;
+}
+
+@keyframes wave {
+0% { left: -100%; }
+50% { left: 100%; }
+100% { left: 100%; }
+}
+
+section.visible {
+opacity: 1;
+transform: translateX(0);
+}
+
+section.slide-left {
+transform: translateX(-100px);
+}
+
+section.slide-right {
+transform: translateX(100px);
+}
+
+.menu-item {
+display: flex;
+justify-content: space-between;
+padding: 10px 15px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+font-size: 1.1rem;
+position: relative;
+z-index: 3;
+background: linear-gradient(90deg, rgba(0, 245, 255, 0.1), rgba(138, 43, 226, 0.1));
+border-radius: 10px;
+margin-bottom: 5px;
+overflow: hidden;
+transition: all 0.4s ease;
+}
+
+.menu-item::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, rgba(0, 245, 255, 0.4), rgba(138, 43, 226, 0.4));
+transition: left 0.4s ease;
+z-index: -1;
+}
+
+.menu-item:hover::before {
+left: 0;
+}
+
+.menu-item:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(0, 245, 255, 0.6);
+}
+
+.menu-item span:first-child { color: #00f5ff; }
+.menu-item span:last-child { color: #ffdd59; text-shadow: 0 0 8px #ffdd59; }
+
+footer {
+text-align: center;
+padding: 30px;
+font-size: 0.9rem;
+color: #888;
+position: relative;
+z-index: 2;
+}
+
+/* Floating Background Elements */
+.floating-element {
+position: absolute;
+font-size: 2rem;
+color: rgba(255, 255, 255, 0.1);
+pointer-events: none;
+animation: float 10s infinite linear;
+z-index: 1;
+}
+
+.floating-element:nth-child(odd) {
+animation-duration: 12s;
+animation-direction: reverse;
+}
+
+.floating-element:nth-child(3n) {
+animation-duration: 15s;
+}
+
+@keyframes float {
+0% { transform: translateY(100vh) rotate(0deg); }
+50% { transform: translateY(-100px) rotate(180deg); }
+100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Animations */
+@keyframes glow {
+from { text-shadow: 0 0 10px #ffdd59; }
+to { text-shadow: 0 0 25px #ffdd59, 0 0 35px #ffdd59; }
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+from { opacity: 0; transform: translateY(40px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hoverBounce {
+0% { transform: scale(1); }
+50% { transform: scale(1.1) rotate(1deg); }
+100% { transform: scale(1.05) rotate(0deg); }
+}
+
+@media (max-width: 600px) {
+header h1 { font-size: 2.2rem; }
+section h2 { font-size: 1.5rem; }
+.menu-item { font-size: 1rem; }
+.floating-element { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<header>
+<h1>EnterGame Menu</h1>
+</header>
+
+<!-- Espresso -->
+<section id="espresso">
+<h2>Espresso</h2>
+<div class="menu-item"><span>Classic Espresso</span><span>40</span></div>
+<div class="menu-item"><span>Espresso Double</span><span>55</span></div>
+<div class="menu-item"><span>Espresso Cinnamon</span><span>55</span></div>
+<div class="menu-item"><span>Espresso Cinnamon Double</span><span>65</span></div>
+<div class="menu-item"><span>Espresso Avocado</span><span>85</span></div>
+<div class="menu-item"><span>Classic Macchiato</span><span>50</span></div>
+<div class="menu-item"><span>Macchiato Flavour</span><span>65</span></div>
+<div class="menu-item"><span>Cortado</span><span>65</span></div>
+<div class="menu-item"><span>Amricano</span><span>50</span></div>
+<div class="menu-item"><span>Classic Flat White</span><span>80</span></div>
+<div class="menu-item"><span>Caramel Flat White</span><span>85</span></div>
+<div class="menu-item"><span>Classic Mocha</span><span>75</span></div>
+<div class="menu-item"><span>Nuttella Mocha</span><span>75</span></div>
+<div class="menu-item"><span>Latte</span><span>55</span></div>
+<div class="menu-item"><span>Classic Cappuccino</span><span>65</span></div>
+<div class="menu-item"><span>EnterGame Cappuccino</span><span>70</span></div>
+</section>
+
+<!-- Coffee -->
+<section id="coffee">
+<h2>Coffee</h2>
+<div class="menu-item"><span>Light Turkish Coffee</span><span>40</span></div>
+<div class="menu-item"><span>Light Turkish Double</span><span>45</span></div>
+<div class="menu-item"><span>Muhaweg Turkish Coffee</span><span>40</span></div>
+<div class="menu-item"><span>Muhaweg Turkish Double</span><span>45</span></div>
+<div class="menu-item"><span>Dark Turkish Coffee</span><span>40</span></div>
+<div class="menu-item"><span>Classic French Coffee</span><span>50</span></div>
+<div class="menu-item"><span>Nuttella French Coffee</span><span>65</span></div>
+<div class="menu-item"><span>Hazelnuts French Coffee</span><span>55</span></div>
+</section>
+
+<!-- Hot Drinks -->
+<section id="hot-drinks">
+<h2>Hot Drinks</h2>
+<div class="menu-item"><span>Classic Hot Chocolate</span><span>65</span></div>
+<div class="menu-item"><span>Nuttella Hot Chocolate</span><span>80</span></div>
+<div class="menu-item"><span>Hot Marshmellow</span><span>65</span></div>
+<div class="menu-item"><span>Classic Sahlab</span><span>60</span></div>
+<div class="menu-item"><span>Sahlab Nuts</span><span>65</span></div>
+<div class="menu-item"><span>Hot Cider</span><span>40</span></div>
+<div class="menu-item"><span>Classic Tea</span><span>35</span></div>
+<div class="menu-item"><span>Green Tea</span><span>30</span></div>
+<div class="menu-item"><span>Milk Tea</span><span>50</span></div>
+<div class="menu-item"><span>Tea Flavour</span><span>50</span></div>
+<div class="menu-item"><span>Anise</span><span>40</span></div>
+<div class="menu-item"><span>Mint</span><span>40</span></div>
+<div class="menu-item"><span>Herbs Drink</span><span>40</span></div>
+<div class="menu-item"><span>Vitamine C</span><span>60</span></div>
+<div class="menu-item"><span>Ginger</span><span>50</span></div>
+<div class="menu-item"><span>Cinnamon Milk</span><span>45</span></div>
+<div class="menu-item"><span>Nescafe Black</span><span>40</span></div>
+<div class="menu-item"><span>Milk Nescafe</span><span>60</span></div>
+</section>
+
+<!-- Ice Coffee -->
+<section id="ice-coffee">
+<h2>Ice Coffee</h2>
+<div class="menu-item"><span>Classic Ice Coffee</span><span>70</span></div>
+<div class="menu-item"><span>Ice Latte</span><span>70</span></div>
+<div class="menu-item"><span>Ice Latte Flavour</span><span>85</span></div>
+<div class="menu-item"><span>Classic Ice Mocha</span><span>85</span></div>
+<div class="menu-item"><span>Caramel Ice Mocha</span><span>85</span></div>
+<div class="menu-item"><span>Mocha Frappie</span><span>90</span></div>
+<div class="menu-item"><span>Caramel Frappie</span><span>90</span></div>
+<div class="menu-item"><span>Ice Frapptino</span><span>80</span></div>
+<div class="menu-item"><span>Ice Flat White</span><span>90</span></div>
+<div class="menu-item"><span>Ice Espresso Redbull</span><span>110</span></div>
+</section>
+
+<!-- Ice Tea -->
+<section id="ice-tea">
+<h2>Ice Tea</h2>
+<div class="menu-item"><span>Classic Ice Tea</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Lemon Mint</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Peach</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Passion Fruit</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Green Apple</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Grapes</span><span>60</span></div>
+<div class="menu-item"><span>Ice Tea Cherry</span><span>60</span></div>
+</section>
+
+<!-- Fresh Juice -->
+<section id="fresh-juice">
+<h2>Fresh Juice</h2>
+<div class="menu-item"><span>Mango</span><span>70</span></div>
+<div class="menu-item"><span>Lemon Mint</span><span>60</span></div>
+<div class="menu-item"><span>Lemon</span><span>50</span></div>
+<div class="menu-item"><span>Orange</span><span>50</span></div>
+<div class="menu-item"><span>Strawberry</span><span>60</span></div>
+<div class="menu-item"><span>Kiwi</span><span>65</span></div>
+<div class="menu-item"><span>Mango Kiwi</span><span>70</span></div>
+<div class="menu-item"><span>Avocado</span><span>120</span></div>
+<div class="menu-item"><span>Guava</span><span>60</span></div>
+<div class="menu-item"><span>Watermelon</span><span>50</span></div>
+<div class="menu-item"><span>Bannana Milk</span><span>60</span></div>
+</section>
+
+<!-- Smoothies -->
+<section id="smoothies">
+<h2>Smoothies</h2>
+<div class="menu-item"><span>Mango</span><span>70</span></div>
+<div class="menu-item"><span>Mango Kiwi</span><span>70</span></div>
+<div class="menu-item"><span>Strawberry</span><span>70</span></div>
+<div class="menu-item"><span>Blueberry</span><span>70</span></div>
+<div class="menu-item"><span>Roseberry</span><span>70</span></div>
+<div class="menu-item"><span>Guava</span><span>70</span></div>
+<div class="menu-item"><span>Passion Fruit</span><span>70</span></div>
+<div class="menu-item"><span>Bannana Milk</span><span>70</span></div>
+<div class="menu-item"><span>Lemon Mint</span><span>70</span></div>
+<div class="menu-item"><span>Peach</span><span>70</span></div>
+<div class="menu-item"><span>Orange</span><span>70</span></div>
+<div class="menu-item"><span>Watermelon</span><span>70</span></div>
+<div class="menu-item"><span>Cherry</span><span>70</span></div>
+</section>
+
+<!-- Milkshakes -->
+<section id="milkshakes">
+<h2>Milkshakes</h2>
+<div class="menu-item"><span>Chocolate</span><span>80</span></div>
+<div class="menu-item"><span>White Chocolate</span><span>90</span></div>
+<div class="menu-item"><span>Caramel</span><span>80</span></div>
+<div class="menu-item"><span>Vanilia</span><span>80</span></div>
+<div class="menu-item"><span>Oreo</span><span>90</span></div>
+<div class="menu-item"><span>Lotus</span><span>90</span></div>
+<div class="menu-item"><span>Nuttella</span><span>90</span></div>
+<div class="menu-item"><span>Coffee</span><span>100</span></div>
+<div class="menu-item"><span>Coconut</span><span>80</span></div>
+<div class="menu-item"><span>Mango</span><span>80</span></div>
+<div class="menu-item"><span>Blueberry</span><span>80</span></div>
+<div class="menu-item"><span>Strawberry</span><span>80</span></div>
+</section>
+
+<!-- Special Milkshakes -->
+<section id="special-milkshakes">
+<h2>Special Milkshakes</h2>
+<div class="menu-item"><span>Curly</span><span>100</span></div>
+<div class="menu-item"><span>Marshmello</span><span>100</span></div>
+<div class="menu-item"><span>Corn</span><span>100</span></div>
+</section>
+
+<!-- Italian Soda -->
+<section id="italian-soda">
+<h2>Italian Soda</h2>
+<div class="menu-item"><span>Classic Mojito</span><span>70</span></div>
+<div class="menu-item"><span>Mojito Redbull</span><span>100</span></div>
+<div class="menu-item"><span>Mojito Blueberry</span><span>75</span></div>
+<div class="menu-item"><span>Mojito Passion</span><span>80</span></div>
+<div class="menu-item"><span>Mojito Peach</span><span>75</span></div>
+<div class="menu-item"><span>Blue Hawaii</span><span>75</span></div>
+<div class="menu-item"><span>Cherry Cola</span><span>70</span></div>
+<div class="menu-item"><span>Chock</span><span>130</span></div>
+<div class="menu-item"><span>Sunshine</span><span>75</span></div>
+</section>
+
+<!-- Yogurt -->
+<section id="yogurt">
+<h2>Yogurt</h2>
+<div class="menu-item"><span>Honey Yogurt</span><span>70</span></div>
+<div class="menu-item"><span>Fruits Yogurt</span><span>75</span></div>
+<div class="menu-item"><span>Blueberry Yogurt</span><span>70</span></div>
+<div class="menu-item"><span>Lemon Mint Yogurt</span><span>60</span></div>
+</section>
+
+<!-- PopCorn -->
+<section id="popcorn">
+<h2>PopCorn</h2>
+<div class="menu-item"><span>Classic Salt</span><span>35</span></div>
+<div class="menu-item"><span>Cheese</span><span>40</span></div>
+<div class="menu-item"><span>Chilli Lemon</span><span>40</span></div>
+</section>
+
+<!-- Waffles -->
+<section id="waffles">
+<h2>Waffles</h2>
+<div class="menu-item"><span>Nuttella</span><span>75</span></div>
+<div class="menu-item"><span>Chocolate</span><span>75</span></div>
+<div class="menu-item"><span>White Chocolate</span><span>75</span></div>
+<div class="menu-item"><span>Mix</span><span>75</span></div>
+<div class="menu-item"><span>Caramel</span><span>75</span></div>
+<div class="menu-item"><span>Oreo</span><span>90</span></div>
+<div class="menu-item"><span>Lotus</span><span>75</span></div>
+</section>
+
+<footer>
+<p>&copy; 2023 EnterGame. All rights reserved.</p>
+<div id="qr-code" style="margin-top: 20px; text-align: center;">
+<h3>Scan QR Code to Access on Phone</h3>
+<p style="font-size: 0.8rem; color: #aaa;">Note: Ensure the local server is running on port 8000 and your phone is connected to the same Wi-Fi network.</p>
+<div id="qrcode"></div>
+</div>
+</footer>
+
+<script>
+let lastScrollTop = 0;
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        } else {
+            entry.target.classList.remove('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+
+window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    sections.forEach((section, index) => {
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            if (index % 2 === 0) {
+                section.classList.add('slide-left');
+                section.classList.remove('slide-right', 'reverse');
+            } else {
+                section.classList.add('slide-right');
+                section.classList.remove('slide-left', 'reverse');
+            }
+        } else {
+            // Scrolling up
+            if (index % 2 === 0) {
+                section.classList.add('reverse-left');
+                section.classList.remove('slide-left', 'slide-right', 'reverse-right');
+            } else {
+                section.classList.add('reverse-right');
+                section.classList.remove('slide-left', 'slide-right', 'reverse-left');
+            }
+        }
+    });
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// Generate QR Code
+const qrCodeUrl = "http://192.168.100.37:8000/index.html"; // Local server URL for mobile access
+new QRCode(document.getElementById("qrcode"), {
+    text: qrCodeUrl,
+    width: 128,
+    height: 128,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+});
+</script>
+</body>
+</html>
