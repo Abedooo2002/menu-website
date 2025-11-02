@@ -282,9 +282,6 @@ section h2 { font-size: 1.5rem; }
 <div class="menu-item"><span>Ice Latte Flavour</span><span>85</span></div>
 <div class="menu-item"><span>Classic Ice Mocha</span><span>85</span></div>
 <div class="menu-item"><span>Caramel Ice Mocha</span><span>85</span></div>
-<div class="menu-item"><span>Mocha Frappie</span><span>90</span></div>
-<div class="menu-item"><span>Caramel Frappie</span><span>90</span></div>
-<div class="menu-item"><span>Ice Frapptino</span><span>80</span></div>
 <div class="menu-item"><span>Ice Flat White</span><span>90</span></div>
 <div class="menu-item"><span>Ice Espresso Redbull</span><span>110</span></div>
 </section>
@@ -309,28 +306,19 @@ section h2 { font-size: 1.5rem; }
 <div class="menu-item"><span>Lemon</span><span>50</span></div>
 <div class="menu-item"><span>Orange</span><span>50</span></div>
 <div class="menu-item"><span>Strawberry</span><span>60</span></div>
-<div class="menu-item"><span>Kiwi</span><span>65</span></div>
-<div class="menu-item"><span>Mango Kiwi</span><span>70</span></div>
-<div class="menu-item"><span>Avocado</span><span>120</span></div>
-<div class="menu-item"><span>Guava</span><span>60</span></div>
 <div class="menu-item"><span>Watermelon</span><span>50</span></div>
-<div class="menu-item"><span>Bannana Milk</span><span>60</span></div>
 </section>
 
 <!-- Smoothies -->
 <section id="smoothies">
 <h2>Smoothies</h2>
 <div class="menu-item"><span>Mango</span><span>70</span></div>
-<div class="menu-item"><span>Mango Kiwi</span><span>70</span></div>
 <div class="menu-item"><span>Strawberry</span><span>70</span></div>
 <div class="menu-item"><span>Blueberry</span><span>70</span></div>
 <div class="menu-item"><span>Roseberry</span><span>70</span></div>
-<div class="menu-item"><span>Guava</span><span>70</span></div>
 <div class="menu-item"><span>Passion Fruit</span><span>70</span></div>
-<div class="menu-item"><span>Bannana Milk</span><span>70</span></div>
 <div class="menu-item"><span>Lemon Mint</span><span>70</span></div>
 <div class="menu-item"><span>Peach</span><span>70</span></div>
-<div class="menu-item"><span>Orange</span><span>70</span></div>
 <div class="menu-item"><span>Watermelon</span><span>70</span></div>
 <div class="menu-item"><span>Cherry</span><span>70</span></div>
 </section>
@@ -346,7 +334,6 @@ section h2 { font-size: 1.5rem; }
 <div class="menu-item"><span>Lotus</span><span>90</span></div>
 <div class="menu-item"><span>Nuttella</span><span>90</span></div>
 <div class="menu-item"><span>Coffee</span><span>100</span></div>
-<div class="menu-item"><span>Coconut</span><span>80</span></div>
 <div class="menu-item"><span>Mango</span><span>80</span></div>
 <div class="menu-item"><span>Blueberry</span><span>80</span></div>
 <div class="menu-item"><span>Strawberry</span><span>80</span></div>
@@ -362,7 +349,7 @@ section h2 { font-size: 1.5rem; }
 <div class="menu-item"><span>Mojito Peach</span><span>75</span></div>
 <div class="menu-item"><span>Blue Hawaii</span><span>75</span></div>
 <div class="menu-item"><span>Cherry Cola</span><span>70</span></div>
-<div class="menu-item"><span>Chock</span><span>130</span></div>
+<div class="menu-item"><span>Chock</span><span>120</span></div>
 <div class="menu-item"><span>Sunshine</span><span>75</span></div>
 </section>
 
@@ -390,8 +377,8 @@ section h2 { font-size: 1.5rem; }
 <p>&copy; 2023 EnterGame. All rights reserved.</p>
 <div id="qr-code" style="margin-top: 20px; text-align: center;">
 <h3>Scan QR Code to Access on Phone</h3>
-<p style="font-size: 0.8rem; color: #aaa;">Note: Ensure the local server is running on port 8000 and your phone is connected to the same Wi-Fi network.</p>
-<div id="qrcode"></div>
+<p style="font-size: 0.8rem; color: #aaa;">https://abedooo2002.github.io/menu-website/</p>
+<img src="menu_qr.png" alt="QR Code" width="128" height="128">
 </div>
 </footer>
 
@@ -437,10 +424,10 @@ window.addEventListener('scroll', () => {
         }
     });
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+});html
 
 // Generate QR Code
-const qrCodeUrl = "http://192.168.100.37:8000/index.html"; // Local server URL for mobile access
+const qrCodeUrl = "https://abedooo2002.github.io/menu-website/"; // Local server URL for mobile access
 new QRCode(document.getElementById("qrcode"), {
     text: qrCodeUrl,
     width: 128,
